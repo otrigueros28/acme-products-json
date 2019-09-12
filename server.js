@@ -23,6 +23,17 @@ app.get('/api/products', async (res, req, next)=>{
   }
 });
 
-//db.create()
+app.get('/api/products/:id', (req, res, next) =>{
+  res.sendFile(path.join(__dirname, 'products.json'))
+});
+
+app.delete('/api/products/:id', async (req, res, next)=>{
+  try{
+    res.send(await db.destroy(id))
+  }
+  catch(ex){
+    next(ex)
+  }
+})
 
 app.listen(3000, () => console.log('listening'));

@@ -1,1 +1,2 @@
-[{"name": "phone", "price": 10}]
+[{"name": "phone", "price": 10},
+  {"name": "pc", "price": 100}]
