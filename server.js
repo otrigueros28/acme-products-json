@@ -1,14 +1,21 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const db = require('./db');
+const dbFunction = require('./db');
+const db = dbFunction();
 
 app.get('/', (req, res, next)=>{
   res.sendFile(path.join(__dirname, 'index.html'));
 })
+app.get('/api/products', async (res, req, next)=>{
+  try {
+    res.send(await db.findAll())
+  }
+  catch(ex) {
+    next(ex);
+  }
+});
 
-app.get('/api/users', (req, res, next) =>{
-  res.send(db.getusers());
-})
+//db.create()
 
 app.listen(3000, ()=> console.log('listening'));
