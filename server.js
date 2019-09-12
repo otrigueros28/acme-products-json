@@ -3,12 +3,10 @@ const path = require('path');
 const app = express();
 const db = require('./db');
 
-app.get('/', (req, res, next)=>{
-  res.sendFile(path.join(__dirname, 'index.html'));
-})
+app.use(express.json());
 
-app.get('/api/users', (req, res, next) =>{
-  res.send(db.getusers());
-})
+app.get('/', (req, res, next) => {
+	res.sendFile(path.join(__dirname, 'index.html'));
+});
 
-app.listen(3000, ()=> console.log('listening'));
+app.listen(3000, () => console.log('listening'));
